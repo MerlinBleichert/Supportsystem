@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Supportsystem
-{
+{   
+    [Serializable]
     public class Ticket
     {
         private Boolean _solved = false;

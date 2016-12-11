@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Supportsystem
-{
+{   [Serializable]
     public class Ticketoverview
     {
         private List<Ticket> tickets = new List<Ticket>();
