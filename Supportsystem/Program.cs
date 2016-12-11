@@ -14,8 +14,10 @@ namespace Supportsystem
         {
             const string filename = "Data.xml";
 
-            MachineCatalogue mc = Read(filename);
+            List<Object> objects = Read(filename);
 
+            MachineCatalogue mc = (MachineCatalogue) objects.ElementAt(0);
+            Ticketoverview to = (Ticketoverview) objects.ElementAt(1);
             while (true)
             {
                 string n1 = Console.ReadLine();
@@ -29,19 +31,18 @@ namespace Supportsystem
 
             PrintMachines(mc);
 
-            Console.ReadLine();
+            Write(objects, filename);
 
-            Console.WriteLine(Write(mc, filename));
             Console.ReadLine();
         }
 
-        public static bool Write(MachineCatalogue mc, string filename)
+        public static bool Write(List<Object> objects , string filename)
         {
             try
             {
-                XmlSerializer x = new XmlSerializer(typeof(MachineCatalogue));
+                XmlSerializer x = new XmlSerializer(typeof(List<Object>), new Type[] { typeof(MachineCatalogue), typeof(Ticketoverview) });
                 using (FileStream fs = File.Create(filename))
-                    x.Serialize(fs, mc);
+                    x.Serialize(fs, objects);
                 return true;
             }
             catch (IOException)
@@ -50,21 +51,21 @@ namespace Supportsystem
             }
         }
 
-        public static MachineCatalogue Read(String filename)
+        public static List<Object> Read(String filename)
         {
-            MachineCatalogue mc = new MachineCatalogue();
+            List<Object> objects = new List<Object>() { new MachineCatalogue(), new Ticketoverview() };
             try
             {
-                XmlSerializer x = new XmlSerializer(typeof(MachineCatalogue));
+                XmlSerializer x = new XmlSerializer(typeof(List<Object>), new Type[] { typeof(MachineCatalogue), typeof(Ticketoverview) });
                 using (FileStream fs = File.Open(filename, FileMode.Open))
-                    mc = (MachineCatalogue)x.Deserialize(fs);
+                    objects = (List<Object>)x.Deserialize(fs);
 
-                return mc;
+                return objects;
             }
             catch
             {
-                
-                return mc;
+
+                return objects;
             }
         }
         public static void PrintMachines(MachineCatalogue mc)

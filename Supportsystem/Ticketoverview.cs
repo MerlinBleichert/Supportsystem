@@ -17,14 +17,27 @@ namespace Supportsystem
 
         public Ticketoverview(List<Ticket> tickets)
         {
-            this.tickets = tickets;
+            this.Tickets = tickets;
+        }
+
+        public List<Ticket> Tickets
+        {
+            get
+            {
+                return this.tickets;
+            }
+
+            set
+            {
+                this.tickets = value;
+            }
         }
 
         public void AddTicket(Ticket ticket)
         {
-            if (!this.tickets.Contains(ticket))
+            if (!this.Tickets.Contains(ticket))
             {
-                this.tickets.Add(ticket);
+                this.Tickets.Add(ticket);
             }
         }
 
@@ -32,7 +45,7 @@ namespace Supportsystem
         {
             List<Ticket> newList = new List<Ticket>();
 
-            foreach(Ticket ticket in this.tickets)
+            foreach(Ticket ticket in this.Tickets)
             {
                 if(ticket.Solved == solved)
                 {

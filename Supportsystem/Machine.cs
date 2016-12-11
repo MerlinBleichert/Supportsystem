@@ -24,7 +24,7 @@ namespace Supportsystem
         public string Comnumber
         {
             get { return this._comnumber; }
-            set { this.Comnumber = value; }
+            set { this._comnumber = value; }
         }
 
         public string Customer
@@ -36,7 +36,7 @@ namespace Supportsystem
         public string Location
         {
             get { return this._location; }
-            set { this.Location = value; }
+            set { this._location = value; }
         }
 
         public override string ToString()
