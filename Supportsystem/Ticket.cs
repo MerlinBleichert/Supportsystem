@@ -37,6 +37,11 @@ namespace Supportsystem
             set { this._solved = value; }
         }
 
+        public Ticket()
+        {
+
+        }
+
 
     }
 }
