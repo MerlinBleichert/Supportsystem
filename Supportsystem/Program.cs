@@ -14,10 +14,10 @@ namespace Supportsystem
         {
             const string filename = "Data.xml";
 
-            List<Object> objects = Read(filename);
+            ModelObjects objects = Read(filename);
 
-            MachineCatalogue mc = (MachineCatalogue) objects.ElementAt(0);
-            Ticketoverview to = (Ticketoverview) objects.ElementAt(1);
+            MachineCatalogue mc = objects.MachineCa;
+            Ticketoverview to =objects.TicketOV;
             while (true)
             {
                 string n1 = Console.ReadLine();
@@ -36,11 +36,11 @@ namespace Supportsystem
             Console.ReadLine();
         }
 
-        public static bool Write(List<Object> objects , string filename)
+        public static bool Write(ModelObjects objects , string filename)
         {
             try
             {
-                XmlSerializer x = new XmlSerializer(typeof(List<Object>), new Type[] { typeof(MachineCatalogue), typeof(Ticketoverview) });
+                XmlSerializer x = new XmlSerializer(typeof(ModelObjects));
                 using (FileStream fs = File.Create(filename))
                     x.Serialize(fs, objects);
                 return true;
@@ -51,14 +51,14 @@ namespace Supportsystem
             }
         }
 
-        public static List<Object> Read(String filename)
+        public static ModelObjects Read(String filename)
         {
-            List<Object> objects = new List<Object>() { new MachineCatalogue(), new Ticketoverview() };
+            ModelObjects objects = new ModelObjects();
             try
             {
-                XmlSerializer x = new XmlSerializer(typeof(List<Object>), new Type[] { typeof(MachineCatalogue), typeof(Ticketoverview) });
+                XmlSerializer x = new XmlSerializer(typeof(ModelObjects));
                 using (FileStream fs = File.Open(filename, FileMode.Open))
-                    objects = (List<Object>)x.Deserialize(fs);
+                    objects = (ModelObjects)x.Deserialize(fs);
 
                 return objects;
             }
