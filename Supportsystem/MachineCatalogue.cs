@@ -18,20 +18,33 @@ namespace Supportsystem
 
         public MachineCatalogue(List<Machine> machines)
         {
-            this.machines = machines;
+            this.Machines = machines;
+        }
+
+        public List<Machine> Machines
+        {
+            get
+            {
+                return machines;
+            }
+
+            set
+            {
+                this.machines = value;
+            }
         }
 
         public void AddMachine(Machine machine)
         {
-            if (!this.machines.Contains(machine))
+            if (!this.Machines.Contains(machine))
             {
-                machines.Add(machine);
+                Machines.Add(machine);
             }
         }
-
+        
         public List<Machine> GetCopy()
         {
-            return new List<Machine>(machines);
+            return new List<Machine>(Machines);
         }
     }
 }
